@@ -2,8 +2,9 @@
 
 public class Token {
     public enum Type {
-        ASSIGNMENT, OPERATOR, NUMBER, STRING, REFERENCE, CONFIG, UPDATE, COMPUTE, SHOW, CONFIGS, IDENTIFIER
+        ASSIGNMENT, OPERATOR, KEYWORD, NUMBER, STRING, REFERENCE, CONFIG, UPDATE, COMPUTE, SHOW, CONFIGS, IDENTIFIER, BRACES, SEMICOLON, PRINT
     }
+
 
     private final Type type;
     private final String value;

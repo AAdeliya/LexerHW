@@ -15,6 +15,15 @@ public class Lexer {
         this.tokens = new ArrayList<>();
         this.current = 0;
         tokenize();
+
+
+        //  x = 5;
+        //                if (x > 3){
+        //                    y = x + 2;
+        //                } else {
+        //                    y = x * (2 + 3);
+        //                    }
+        //                    print y//
     }
 
     private void tokenize() {
@@ -27,17 +36,43 @@ public class Lexer {
                 case '=':
                     tokens.add(new Token(Token.Type.ASSIGNMENT, "="));
                     current++;
+
                     break;
+                case '+':
+                case '-':
+                case '*':
+                case '/':
                 case '>':
+                case '<':
+
                     tokens.add(new Token(Token.Type.OPERATOR, Character.toString(ch)));
                     current++;
                     break;
+                case '(':
+                case ')':
+                case '{':
+                case '}':
+
+                    tokens.add(new Token(Token.Type.BRACES, Character.toString(ch)));
+                    current++;
+                    break;
+                case ';':
+                    tokens.add(new Token(Token.Type.SEMICOLON, Character.toString(ch)));
+                    current++;
+                    break;
+
                 case '"':
                     tokens.add(new Token(Token.Type.STRING, readString()));
                     break;
                 case '%':
                     tokens.add(new Token(Token.Type.REFERENCE, readReference()));
                     break;
+
+
+
+
+
+
                 default:
                     if (isDigit(ch)) {
                         tokens.add(new Token(Token.Type.NUMBER, readNumber()));
@@ -58,6 +93,10 @@ public class Lexer {
             case "compute" -> Token.Type.COMPUTE;
             case "show" -> Token.Type.SHOW;
             case "configs" -> Token.Type.CONFIGS;
+            case "if" ->Token.Type.KEYWORD;
+            case "else" -> Token.Type.KEYWORD;
+            case "print" ->Token.Type.KEYWORD;
+            case "end"->Token.Type.KEYWORD;
             default -> Token.Type.IDENTIFIER;
         };
     }
