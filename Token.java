@@ -2,12 +2,16 @@
 
 public class Token {
     public enum Type {
-        ASSIGNMENT, OPERATOR, KEYWORD, NUMBER, STRING, REFERENCE, CONFIG, UPDATE, COMPUTE, SHOW, CONFIGS, IDENTIFIER, BRACES, SEMICOLON, PRINT
+        NUMBER, VAR, ASSIGN, MULTIPLY, DIVIDE, CONFIG, PLUS,
+        MINUS, UPDATE, COMPUTE, SHOW, KEYWORD,
+        LPAREN, RPAREN, LBRACE, RBRACE, SEMICOLON, CONFIGS,
+        ASSIGMENT, STRING, OPERATOR, IDENTIFIER, REFERENCES, BRACES, PRINT, REFERENCE, ASSIGNMENT
+
     }
 
 
-    private final Type type;
-    private final String value;
+    public final Type type;
+    public  final String value;
 
     public Token(Type type, String value) {
         this.type = type;

@@ -6,9 +6,9 @@ import java.util.List;
 
 public class Lexer {
     //private final ArrayList<Token> tokens = new ArrayList<>();
-    private final String input;
-    private final List<Token> tokens;
-    private int current;
+    public final String input;
+    public  final List<Token> tokens;
+    public  int current;
 
     public Lexer(String input) {
         this.input = input;
@@ -26,7 +26,7 @@ public class Lexer {
         //                    print y//
     }
 
-    private void tokenize() {
+    public List<Token> tokenize() {
         while (current < input.length()) {
             char ch = input.charAt(current);
             switch (ch) {
@@ -34,7 +34,7 @@ public class Lexer {
                     current++; // Skip whitespace
                     break;
                 case '=':
-                    tokens.add(new Token(Token.Type.ASSIGNMENT, "="));
+                    tokens.add(new Token(Token.Type.ASSIGN, "="));
                     current++;
 
                     break;
@@ -73,6 +73,7 @@ public class Lexer {
 
 
 
+
                 default:
                     if (isDigit(ch)) {
                         tokens.add(new Token(Token.Type.NUMBER, readNumber()));
@@ -84,9 +85,10 @@ public class Lexer {
                     }
             }
         }
+        return null;
     }
 
-    private Token.Type deriveTokenType(String identifier) {
+    public Token.Type deriveTokenType(String identifier) {
         return switch (identifier) {
             case "config" -> Token.Type.CONFIG;
             case "update" -> Token.Type.UPDATE;

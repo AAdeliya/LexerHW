@@ -1,3 +1,4 @@
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -27,4 +28,9 @@ public class Main {
         Lexer lexer2 = new Lexer(input2);
         for (Token token : lexer2.getTokens()) {
             System.out.println(token);
+
+            List<Token> tokens = lexer2.tokenize();
+            Parser parser = new Parser(lexer2.tokens);
+            ASTNode root = parser.parse();
+            root.print("    ");
     }}}
